@@ -455,7 +455,6 @@ a,button{-webkit-tap-highlight-color:rgba(66,31,143,.14)}
       <a href="#services">Services</a>
       <a href="#approach">Approach</a>
       <a href="#team">Team</a>
-      <a href="#contact">Contact</a>
     </nav>
     <a class="btn btn--line" href="#contact">Contact us</a>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-panel"><i aria-hidden="true"></i><span>Menu</span></button>
@@ -819,7 +818,9 @@ a,button{-webkit-tap-highlight-color:rgba(66,31,143,.14)}
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
 
   var groups = ['.nav a', '.strip a'].map(function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); });
-  var targets = groups[0].map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  // The phone bar keeps a Contact link the desktop nav drops (its Contact us button covers it), so the
+  // sections come from the bar; the nav's links line up with its first entries.
+  var targets = groups[1].map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
   var strip = document.getElementById('strip'), shown = -2;
   function spy() {
     var line = window.scrollY + 150, current = -1;
